@@ -1,0 +1,150 @@
+version: "3.1"
+
+services:
+  mysql:
+    image: mysql
+    container_name: mysql
+    restart: on-failure
+    ports:
+      - "3309:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: samuel
+      MYSQL_PASSWORD: samuel
+
+
+    volumes:
+      - ./init:/docker-entrypoint-initdb.d
+
+  adminer:
+    image: adminer
+    container_name: adminer
+    restart: always
+    depends_on:
+      - mysql
+    links:
+      - mysql:db
+    ports:
+      - 8080:8080
+
+  zipkin:
+    image: openzipkin/zipkin
+    container_name: zipkin
+    restart: on-failure
+    networks:
+      - spring
+    ports:
+      - "9411:9411"
+
+  mail-server:
+    image: maildev/maildev
+    container_name: maildev
+    restart: on-failure
+    networks:
+      - spring
+    ports:
+      - "1080:1080"
+      - "1025:1025"
+
+  api-gateway:
+    image: samfrosh/api-gateway:latest
+    container_name: api-gateway
+    restart: on-failure
+    hostname: api-gateway
+    networks:
+      - spring
+    ports:
+      - "8082:8082"
+    environment:
+      API_GATEWAY_HOST: api-gateway
+      EUREKA_HOST: eureka-server
+      ZIPKIN_HOST: zipkin
+      CONFIG_SERVER_HOST: config-server
+    depends_on:
+      - zipkin
+      - eureka-server
+      - config-server
+
+
+  config-server:
+    image: samfrosh/config-server:latest
+    container_name: config-server
+    restart: on-failure
+    hostname: config-server
+    environment:
+      EUREKA_HOST: eureka-server
+      ZIPKIN_HOST: zipkin
+      CONFIG_SERVER_HOST: config-server
+    depends_on:
+      - zipkin
+      - eureka-server
+    networks:
+      - spring
+    ports:
+      - "8081:8081"
+
+
+  eureka-server:
+    image: samfrosh/eureka-server:latest
+    container_name: eureka-server
+    restart: on-failure
+    hostname: eureka-server
+    networks:
+      - spring
+    ports:
+      - "8761:8761"
+    environment:
+      EUREKA_HOST: eureka-server
+      ZIPKIN_HOST: zipkin
+      CONFIG_SERVER_HOST: config-server
+    depends_on:
+      - zipkin
+
+networks:
+  mysql:
+    driver: bridge
+  spring:
+    driver: bridge
+
+#  tweet-service:
+#    image: samfrosh/tweeet-service
+#    container_name: tweet-service
+#    restart: on-failure
+#    hostname: tweet-service
+#    networks:
+#      - spring
+#    environment:
+#      EUREKA_HOST: eureka-server
+#      ZIPKIN_HOST: zipkin
+#      CONFIG_SERVER_HOST: config-server
+#      TWEET_SERVICE_HOST: tweet-service
+#    depends_on:
+#      - zipkin
+#      - eureka-server
+#      - adminer
+#      - config-server
+#      - mysql
+#    ports:
+#      - "8084:8084"
+#
+#  user-service:
+#    image: samfrosh/user-service
+#    container_name: user-service
+#    restart: on-failure
+#    hostname: user-service
+#    networks:
+#      - spring
+#    environment:
+#      EUREKA_HOST_URL_DEFAULTZONE: http://eureka-server:8761/eureka
+#      ZIPKIN_HOST: zipkin
+#      CONFIG_SERVER_HOST: config-server
+#      TWEET_SERVICE_HOST: tweet-service
+#    depends_on:
+#      - zipkin
+#      - eureka-server
+#      - adminer
+#      - config-server
+#      - mysql
+#    ports:
+#      - "8083:8083"
+

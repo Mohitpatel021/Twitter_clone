@@ -1,0 +1,311 @@
+.logout {
+  background-color: var(--bg-color);
+  width: 100%;
+  height: 100%;
+  padding: 0 2rem;
+
+  .log_out_background {
+    display: flex;
+    .left-section,
+    .right-section {
+      flex: 1;
+      height: 95vh;
+    }
+
+    .left-section {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      img {
+        width: 28rem;
+      }
+    }
+
+    .right-section {
+      display: flex;
+      align-items: center;
+      color: var(--text-color);
+
+      h1 {
+        font-size: 4.3rem;
+        font-family:
+          "TwitterChirp",
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          Roboto,
+          Helvetica,
+          Arial,
+          sans-serif;
+        font-weight: bold;
+      }
+
+      h3 {
+        margin: 2rem 0;
+        font-size: 1.8rem;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-weight: bold;
+      }
+
+      .buttons {
+        display: flex;
+        flex-direction: column;
+        width: 55%;
+
+        a {
+          display: flex;
+          width: 94%;
+          cursor: pointer;
+          background-color: var(--text-color);
+          margin: 8px 0;
+          color: var(--bg-color);
+          font-weight: bold;
+          font-family: "Roboto", sans-serif;
+          padding: 8px;
+          border-radius: 30px;
+
+          p {
+            color: var(--bg-color);
+          }
+        }
+
+        a:last-child {
+          background-color: var(--twitter-blue);
+          color: var(--text-color);
+        }
+
+        a:last-child:hover {
+          background-color: #1da0f2e5;
+        }
+
+        .or-section {
+          display: flex;
+          align-items: center;
+          text-align: center;
+          margin: 5px 0; /* Adjust margin as needed */
+        }
+
+        .or-line {
+          flex: 1;
+          border: none;
+          border-top: 1px solid var(--border-stroke); /* Style of the horizontal line */
+          margin: 0 8px; /* Adjust margin as needed */
+        }
+      }
+
+      p {
+        color: var(--border-stroke);
+        width: 94%;
+
+        a {
+          color: var(--twitter-blue);
+        }
+      }
+
+      .have_account {
+        h3 {
+          margin-top: 50px;
+          font-size: 1rem;
+          font-family: "Source Sans Pro";
+          line-height: 0rem;
+        }
+
+        a {
+          display: flex;
+          width: 55%;
+          cursor: pointer;
+          border: 1px solid var(--border-stroke);
+          margin: 8px 0;
+          color: var(--twitter-blue);
+          font-weight: bold;
+          font-family: "Roboto", sans-serif;
+          padding: 8px;
+          border-radius: 30px;
+        }
+
+        a:hover {
+          background-color: #1da0f21f;
+        }
+      }
+    }
+  }
+
+  /* CSS */
+  .footer {
+    padding: 0 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+
+      a {
+        font-family:
+          "TwitterChirp",
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          Roboto,
+          Helvetica,
+          Arial,
+          sans-serif;
+        font-size: 0.8rem;
+        text-decoration: none;
+        color: var(--text-color); /* Link color */
+        margin: 0 10px; /* Adjust horizontal spacing */
+        line-height: 30px;
+      }
+
+      a:first-child {
+        margin-left: 0; /* Remove left margin for the first link */
+      }
+
+      a:hover {
+        text-decoration: underline; /* Change link color on hover */
+      }
+
+      a:last-child:hover {
+        text-decoration: none; /* Change link color on hover */
+      }
+    }
+  }
+}
+
+
+
+
+/* Smaller screen responsiveness*/
+@media screen and (max-width: 968px) {
+  .logout {
+    height: fit-content;
+    .log_out_background {
+      padding: 0 20%;
+      padding-top: 1.8rem;
+      flex-direction: column;
+
+      .left-section {
+        flex: 15%;
+        align-items: flex-start;
+        justify-content: left;
+
+        img {
+          width: 4.7rem;
+        }
+      }
+
+      .right-section {
+        margin-top: 50px;
+        flex: 100%;
+        align-items: flex-start;
+        justify-content: left;
+
+        h1 {
+          margin-bottom: 40px;
+          font-size: 4.2rem;
+          width: 200px;
+          line-height: 4rem;
+        }
+
+        h3 {
+          margin: 2rem 0;
+        }
+
+        .buttons {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+        }
+
+        .have_account {
+          a {
+            width: 94%;
+          }
+        }
+      }
+    }
+
+    .footer {
+      margin-top: 30px;
+      padding: 0 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      .footer-links {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+
+        a {
+          font-family:
+            "TwitterChirp",
+            -apple-system,
+            BlinkMacSystemFont,
+            "Segoe UI",
+            Roboto,
+            Helvetica,
+            Arial,
+            sans-serif;
+          font-size: 0.8rem;
+          text-decoration: none;
+          color: var(--text-color); /* Link color */
+          margin: 0 5px; /* Adjust horizontal spacing */
+          line-height: 30px;
+        }
+
+        a:first-child {
+          margin-left: 0; /* Remove left margin for the first link */
+        }
+
+        a:hover {
+          text-decoration: underline; /* Change link color on hover */
+        }
+
+        a:last-child:hover {
+          text-decoration: none; /* Change link color on hover */
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .logout {
+    .log_out_background {
+      padding: 0 0;
+      padding-top: 1.8rem;
+
+      .right-section {
+        margin-top: 25px;
+        flex: 82%;
+        align-items: flex-start;
+        justify-content: left;
+
+        h1 {
+          font-size: 3rem;
+          margin-top: 30px;
+          line-height: 4rem;
+          width: 100%;
+        }
+
+        h3 {
+          margin: 1rem 0;
+        }
+
+        .buttons {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,39 @@
+server:
+  port: 8083
+
+spring:
+  application:
+    name: user-service
+
+  config:
+    import: optional:configserver:http://${CONFIG_SERVER_HOST:localhost}:8081
+
+#  mail:
+#    host: smtp.gmail.com
+#    port: 587
+#    username: samfrosh673@gmail.com
+#    password: samfrosh19
+#    properties:
+#      mail:
+#        smtp:
+#          auth: true
+#          starttls:
+#            enable: true
+
+  mail:
+    host: localhost
+    port: 1025
+    username: hello
+    password: hello
+
+    properties:
+      mail:
+        smtp:
+          ssl:
+            trust: "*"
+          auth: true
+          starttls:
+            enable: true
+          connectiontimeout: 5000
+          timeout: 3000
+          writetimeout: 5000

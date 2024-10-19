@@ -1,0 +1,70 @@
+<div class="profile_page">
+  <div class="profile_header">
+    <div class="backbtn">
+      <img src="https://img.icons8.com/material-rounded/20/FFFFFF/left.png"/>
+    </div>
+    <div class="twittername_and_tweetamount">
+      <h3>Sam's__Tweet</h3>
+      <p>56 Tweets</p>
+    </div>
+  </div>
+  <div class="profile_background">
+  </div>
+  <div class="profile_details">
+    <div class="section1">
+      <div class="left_side"><img alt="" src="https://demo.uix.store/sober/wp-content/uploads/sites/2/2016/07/1_1-4-768x912.jpg
+                "></div>
+      <div class="right_side">
+        <a href="">Edit Profile</a>
+      </div>
+    </div>
+    <div class="section2">
+      <div class="user_details">
+        <h3 class="twitter_name">{{userProfile?.fullname}}</h3>
+        <p class="username">{{userProfile?.username}}</p>
+      </div>
+      <div class="description">
+        <p class="about">{{userProfile?.bio}}</p>
+        <div class="links">
+          <div class="row1 flex">
+            <p class="flex items-center"><img class="w-[15px] mr-[5px]" src="../../../assets/icons/links.png" alt=""><a href="{{userProfile?.website}}">{{userProfile?.website}}</a></p>
+            <p class="flex items-center ml-[20px]"> <img class="w-[15px] mr-[5px]" src="../../../assets/icons/location.png" alt="">{{userProfile?.location}}</p>
+          </div>
+          
+          
+          Science & TechnologyLagos, Nigeriaa-samuel.netlify.appBorn September 19, 2000
+          <p class="text-gray text-[18px] mt-[10px]">Joined November 2019</p>
+        </div>
+      </div>
+
+      <div class="user_numbers">
+        <p class="following">
+          1900 <span>Folowing</span>
+        </p>
+        <p class="followers">20.1k <span>Followers</span></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="profile_navigation_links">
+    <div class="links">
+      <a routerLink="">
+        <span routerLinkActive="activeprofilelink">Tweets</span>
+      </a>
+      <a routerLink="with_replies">
+        <span routerLinkActive="activeprofilelink">Replies</span>
+      </a>
+      <a routerLink="media">
+        <span routerLinkActive="activeprofilelink">Media</span>
+      </a>
+      <a routerLink="likes">
+        <span routerLinkActive="activeprofilelink">Likes</span>
+      </a>
+    </div>
+    
+  </div>
+
+  <router-outlet></router-outlet>
+
+
+</div>

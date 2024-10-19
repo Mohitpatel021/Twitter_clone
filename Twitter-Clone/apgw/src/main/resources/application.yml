@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: apgw
+
+  cloud:
+    gateway:
+
+      globalcors:
+        corsConfigurations:
+          '[/API/V1/**]':
+            allowedOrigins: "*"
+            allowedHeaders: "*"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+
+      routes:
+        - id: user-service
+          uri: lb://user-service
+          filters:
+            - JwtAuthenticationFilter
+          predicates:
+            - Path=/API/V1/**
+
+
+  config:
+    import: optional:configserver:http://${CONFIG_SERVER_HOST:localhost}:8081
